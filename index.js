@@ -95,17 +95,18 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(getFinalsCb, data){
-  const goals = getFinalsCb(data)
-  const homeGoals = goals.reduce(function(acc, item){
-    return (acc + item["Home Team Goals"])/21
+function getAverageGoals(getFinalsCb){
+  const goals = getFinalsCb;
+  let homeGoals = goals.reduce(function(acc, item){
+    return (acc + item["Home Team Goals"])
   },0)
-  const awayGoals = goals.reduce(function(acc, item){
-    return (acc + item["Away Team Goals"])/21
+  let awayGoals = goals.reduce(function(acc, item){
+    return (acc + item["Away Team Goals"])
   },0)
-  return homeGoals
+  return ((homeGoals + awayGoals)/goals.length).toFixed(2);
+
 }
-console.log(getAverageGoals(getFinals, fifaData))
+//console.log(getAverageGoals(getFinals, fifaData))
 
 
 
